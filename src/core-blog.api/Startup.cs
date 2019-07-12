@@ -68,7 +68,8 @@ namespace core_blog.api
                 c.RoutePrefix = "swagger";
             });
 
-            Domain.Startup.ConfigureServices(app);
+            var dbContext = app.ApplicationServices.GetService<Domain.BloggingContext>().Database;
+            Domain.Startup.MigrateDatabase(dbContext);
         }
     }
 }
