@@ -67,9 +67,6 @@ namespace core_blog.api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Blog API v1");
                 c.RoutePrefix = "swagger";
             });
-
-            var dbContext = app.ApplicationServices.GetService<Domain.BloggingContext>().Database;
-            Domain.Startup.MigrateDatabase(dbContext);
         }
     }
 }
