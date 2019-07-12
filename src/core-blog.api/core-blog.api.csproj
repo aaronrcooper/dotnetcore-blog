@@ -20,12 +20,12 @@
   
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design"
-                      Version="1.1.6"
+                      Version="2.2.4"
                        PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet"
-                           Version="1.1.6" />
+                           Version="2.2.4" />
   </ItemGroup>
 
   <ItemGroup>
