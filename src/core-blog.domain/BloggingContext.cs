@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace Domain
 {
@@ -11,6 +12,16 @@ namespace Domain
 
         public BloggingContext(DbContextOptions<BloggingContext> options) : base(options)
         {
+        }
+    }
+
+    public class BloggingContextFactory : IDesignTimeDbContextFactory<BloggingContext>
+    {
+        public BloggingContext CreateDbContext(string[] args)
+        {
+            var options = new DbContextOptionsBuilder<BloggingContext>();
+            options.UseSqlServer("INTENTIONALLY LEFT BLANK");
+            return new BloggingContext(options.Options);
         }
     }
 }
