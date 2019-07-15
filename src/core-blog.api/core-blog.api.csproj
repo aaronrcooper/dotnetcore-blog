@@ -24,6 +24,8 @@
                        PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools"
+                           Version="2.2.4" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet"
                            Version="2.2.4" />
   </ItemGroup>
