@@ -1,25 +1,17 @@
-# Build and test ASP.NET Core projects targeting the full .NET Framework.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
-trigger:
-- master
-
 pool:
-  vmImage: 'windows-latest'
-
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+  name: Hosted Ubuntu 1604
+#Your build pipeline references an undefined variable named ‘Parameters.RestoreBuildProjects’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references an undefined variable named ‘Parameters.RestoreBuildProjects’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+#Your build pipeline references an undefined variable named ‘Parameters.TestProjects’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
 
 steps:
-
-# ASP.NET Core (.NET Framework)
 - task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 2.2.300'
+  displayName: 'Use .NET Core sdk 2.2.100'
   inputs:
-    version: 2.2.300
+    version: 2.2.100
 
 - task: DotNetCoreCLI@2
   displayName: Restore
@@ -41,6 +33,14 @@ steps:
     arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Create and Publish Migration Script'
+  inputs:
+    command: custom
+    custom: ef
+    arguments: 'migrations script --idempotent --context BloggingContext --project $(System.DefaultWorkingDirectory)/src/core-blog.domain/core-blog.domain.csproj --startup-project $(System.DefaultWorkingDirectory)/src/core-blog.api/core-blog.api.csproj --output $(build.artifactstagingdirectory)/migrations.sql'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+- task: DotNetCoreCLI@2
   displayName: Publish
   inputs:
     command: publish
@@ -53,3 +53,9 @@ steps:
   inputs:
     PathtoPublish: '$(build.artifactstagingdirectory)'
   condition: succeededOrFailed()
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: MigrationScript'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)/migrations.sql'
+    ArtifactName: MigrationScript
