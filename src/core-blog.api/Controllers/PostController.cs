@@ -29,6 +29,7 @@ namespace ExampleCoreApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Produces(typeof(Post))]
         public IActionResult Get(string id)
         {
             try
@@ -44,6 +45,7 @@ namespace ExampleCoreApi.Controllers
         }
 
         [HttpPost]
+        [Produces(typeof(Post))]
         public IActionResult Post([FromBody]Post post)
         {
             try
@@ -66,6 +68,7 @@ namespace ExampleCoreApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Produces(typeof(Post))]
         public IActionResult Put(string id, [FromBody]Post post)
         {
             try

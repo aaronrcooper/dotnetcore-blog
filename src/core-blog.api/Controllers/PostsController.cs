@@ -2,6 +2,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Business.Services;
+using System.Collections.Generic;
 
 namespace core_blog.api.Controllers
 {
@@ -27,6 +28,7 @@ namespace core_blog.api.Controllers
         }
 
         [HttpGet]
+        [Produces(typeof(List<Dto.Post>))]
         public IActionResult Get()
         {
             var posts = _postService.GetAll().ToArray();

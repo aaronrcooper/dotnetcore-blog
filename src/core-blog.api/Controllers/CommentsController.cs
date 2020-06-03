@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Domain.Exceptions;
 using Business.Services;
+using System.Collections.Generic;
 
 namespace core_blog.api.Controllers
 {
@@ -27,6 +28,7 @@ namespace core_blog.api.Controllers
         }
 
         [HttpGet("{postId}")]
+        [Produces(typeof(List<Dto.Comment>))]
         public IActionResult Get(string postId)
         {
             try

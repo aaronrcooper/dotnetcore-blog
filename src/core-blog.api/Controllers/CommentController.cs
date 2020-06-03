@@ -28,6 +28,7 @@ namespace core_blog.api.Controllers
         }
 
         [HttpGet("{id}")]
+        [Produces(typeof(Dto.Comment))]
         public IActionResult Get(Guid id)
         {
             try
@@ -44,6 +45,7 @@ namespace core_blog.api.Controllers
         }
 
         [HttpPost("{postId}")]
+        [Produces(typeof(Dto.Comment))]
         public IActionResult Post(string postId, [FromBody]Dto.Comment comment)
         {
             try
@@ -65,6 +67,8 @@ namespace core_blog.api.Controllers
         }
         
         [HttpPut("{id}")]
+        [Produces(typeof(Dto.Comment))]
+
         public IActionResult Put(Guid id, [FromBody]Dto.Comment comment)
         {
             if (comment == null || id == Guid.Empty)
