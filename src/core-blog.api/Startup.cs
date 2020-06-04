@@ -28,8 +28,8 @@ namespace core_blog.api
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc();
             services.AddCors();
+            services.AddMvc();
             services.AddApiVersioning(p =>
             {
                 p.AssumeDefaultVersionWhenUnspecified = true;
