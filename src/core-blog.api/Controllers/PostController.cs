@@ -24,7 +24,7 @@ namespace ExampleCoreApi.Controllers
         public IActionResult Options()
         {
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
-            Response.Headers.Add("Access-Control-Allow-Methods", "GET,POST,PUT");
+            Response.Headers.Add("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
             Response.Headers.Add("Access-Control-Allow-Headers", "*");
             return new StatusCodeResult(200);
         }
