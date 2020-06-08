@@ -57,9 +57,10 @@ namespace core_blog.api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
-            app.UseCors(builder => { 
-                builder.WithOrigins("*");
+            app.UseCors(builder => {
+                builder.AllowAnyOrigin();
                 builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
             });
             app.UseMvc();
             app.UseApiVersioning();
