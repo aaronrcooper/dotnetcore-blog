@@ -25,6 +25,7 @@ namespace ExampleCoreApi.Controllers
         {
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
             Response.Headers.Add("Access-Control-Allow-Methods", "GET,POST,PUT");
+            Response.Headers.Add("Access-Control-Allow-Headers", "*");
             return new StatusCodeResult(200);
         }
 

@@ -24,6 +24,7 @@ namespace core_blog.api.Controllers
         {
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
             Response.Headers.Add("Access-Control-Allow-Methods", "GET");
+            Response.Headers.Add("Access-Control-Allow-Headers", "*");
             return new StatusCodeResult(200);
         }
 
