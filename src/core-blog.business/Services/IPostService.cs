@@ -10,5 +10,6 @@ namespace Business.Services
         IEnumerable<Domain.Post> GetAll();
         void Delete(string slug);
         void DeleteAll();
+        IEnumerable<Domain.Post> GetFeatured();
     }
 }

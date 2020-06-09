@@ -125,5 +125,13 @@ namespace Business.Services
 
             _context.SaveChanges();
         }
+
+        public IEnumerable<Post> GetFeatured()
+        {
+            var featured = _context.Posts.Where(post => post.IsFeatured);
+            if (featured == null)
+                return new List<Post>();
+            return featured;
+        }
     }
 }

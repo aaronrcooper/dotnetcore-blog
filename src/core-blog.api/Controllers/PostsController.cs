@@ -43,5 +43,12 @@ namespace core_blog.api.Controllers
             _postService.DeleteAll();
             return new NoContentResult();
         }
+
+        [HttpGet(Name = "featured")]
+        public IActionResult GetFeatured()
+        {
+            var featuredPosts = _postService.GetFeatured();
+            return new OkObjectResult(featuredPosts);
+        }
     }
 }
