@@ -44,7 +44,7 @@ namespace core_blog.api.Controllers
             return new NoContentResult();
         }
 
-        [HttpGet(Name = "featured")]
+        [HttpGet("featured")]
         public IActionResult GetFeatured()
         {
             var featuredPosts = _postService.GetFeatured();
